@@ -1,0 +1,91 @@
+package i2p;
+
+/**
+ *
+ * @author m304user
+ */
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.Stack;
+
+
+public class I2P {
+    public boolean isOperator(char c){
+        if(c == '+' || c == '-' || c == '*' || c =='/' || c == '^' || c == '%' || c == '#')
+        return true;
+        return false;
+    }
+    public boolean checkPrecedence(char c1, char c2){
+        if((c2 == '+' || c2 == '-') && (c1 == '+' || c1 == '-'))
+            return true;
+        else if((c2 == '*' || c2 == '/' || c2 == '%') && (c1 == '+' || c1 == '-' || c1 == '*' || c1 == '/' || c1 == '%'))
+            return true;
+        else if((c2 == '^') && (c1 == '+' || c1 == '-' || c1 == '*' || c1 == '/' || c1 == '%'))
+            return true;
+        else
+            return false;
+    }
+    public String convert(String infix){
+        System.out.printf("%-8s%-26s%-26s\n", "Token","Stack","Output");
+        String postfix = "";
+        Stack<Character> s = new Stack<>();
+        s.push('#');
+        for(int i = 0; i < infix.length(); i++){
+            char inputSymbol = infix.charAt(i);
+            if(isOperator(inputSymbol)){
+                while(checkPrecedence(inputSymbol, s.peek()))
+                postfix += s.pop();
+                s.push(inputSymbol);
+            }else if(inputSymbol == '(')
+                s.push(inputSymbol);
+            else if(inputSymbol == ')'){
+                while(s.peek() != '(') 
+                postfix += s.pop();
+                s.pop();
+            }
+            else
+                postfix += inputSymbol;
+            System.out.printf("%-8s%-26s%-26s\n", ""+inputSymbol,format(s.toString()),postfix);  
+        }
+        while(s.peek() != '#'){
+            postfix += s.pop();
+            System.out.printf("%-8s%-26s%-26s\n", "#",format(s.toString()),postfix);  
+        }
+        return postfix;
+    }
+    public String format(String s){
+        s = s.replaceAll(",","");
+        s = s.replaceAll(" ","");
+        s = s.substring(1, s.length()-1);
+        return s;
+    }
+    //sorry po
+    public static void main(String[] args) {
+        I2P obj = new I2P();
+        Scanner sc = new Scanner(System.in);
+        String infix;
+        System.out.print("Choose between [1] user input or [2] pre-defined equation: ");
+        try{
+        switch(sc.nextInt()){
+            case 1:
+                System.out.println("ENTER THE INFIX\nNote: Pound sign (#) will be added automatically.\n");
+                System.out.print("Equation: E=");
+                infix = sc.next();
+                System.out.println("Infix: "+infix+"#");
+                System.out.println("Postfix: "+obj.convert(infix));
+                break;
+            case 2:
+                infix = "8/2*3-6+(6-4+3%2^2)";
+                System.out.println("Infix: "+infix+"#");
+                System.out.println("Postfix: "+obj.convert(infix));
+                break;
+            default:
+                System.out.println("Numbers 1 or 2 only.\nTry Again:\n");
+                main(args);
+        }
+        }catch(InputMismatchException e){
+            System.out.println("Numbers 1 or 2 only.\nTry Again:\n");
+            main(args);
+        }
+    }
+}
