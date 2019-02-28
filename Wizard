@@ -1,49 +1,4 @@
-package rpg;
 
-/**
- *
- * @author m304user
- */
-public class Wizard extends Character{
-  
-    int maxMagic;
-    int currentMagic;
-    int castheal ;
-    
-    
-
-    public Wizard(String n, int s, int d, int i) {
-        super(n, s, d, i);
-        super.name = n;
-        super.strength = s;
-        super.dexterity = d;
-        super.intelligence = i;
-        maxMagic = 100;
-        currentMagic = maxMagic;
-        
-    
-    }
-    public int castLightningBolt(){
-        if (currentMagic >= 5){
-            currentMagic = maxMagic - 5;
-            return dice.roll() + getIntelligence();
-            
-        }else{
-            return 0;
-  
-        }
-    }
-    
-    public int castHeal(){
-        int h = dice.roll() + getIntelligence();
-    
-        if (currentMagic >= 8){
-            currentMagic = maxMagic -8;
-            super.heal(h);
-            return h;
-        
-        }else{
-            return 0;
   package i2p;
 
 /**
@@ -135,17 +90,6 @@ public class I2p {
         }
     }
 }
-        }
-    }
-    public int getMaxMagic() {
- 
-        return maxMagic;
-
-     
-    }    
-    public int getCurrentMagic() {
-         return currentMagic;
- }
-    }
+      
 
 
