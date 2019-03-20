@@ -1,0 +1,111 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Panel;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author m304user
+ */
+public class GraphicsDemo3 extends Panel implements KeyListener{
+    
+    static String name= " ";
+    static Color color = Color.GREEN;
+    static int y =200, x =200, sa=23, mouth=315;
+    public GraphicsDemo3(){
+        this.setBackground(Color.BLACK);
+        this.addKeyListener(this);
+    }
+    @Override
+    public void paint(Graphics froilan){
+        froilan.setColor(color);
+        froilan.fillArc(x,y, 100, 100, sa, mouth);
+        froilan.setFont(new Font("Times New Roman",Font.BOLD,20));
+        froilan.drawString("Score; ", 400, 15);
+        froilan.drawString(name, 20, 20);
+        }
+    public static void main (String args[]){
+        name =JOptionPane.showInputDialog("Enter your name:");
+        JFrame frame = new JFrame();
+        GraphicsDemo3 panel = new GraphicsDemo3();
+        
+        frame.add(panel);
+        frame.setSize(500, 500);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+       
+    }
+
+    @Override
+    //Arrow key released 
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyChar() == 'r')
+            
+        if(e.getKeyCode() == KeyEvent.VK_UP){
+            if(y<=0)
+                y=getHeight();
+            else
+            y-=5;  
+            sa = 113;
+            if(y% 2 == 0)
+                mouth = 315;
+            else
+                mouth =360;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_DOWN){
+            if(y>= getHeight()-100)
+                y= -100;
+            else
+            y+=5; 
+            
+            sa=293;
+             if(y% 2 == 0)
+                mouth = 315;
+            else
+                mouth =360;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            if(x<=0)
+                x= getHeight();
+            else
+                x-=5;
+            sa = 203;
+             if(x% 2 == 0)
+                mouth = 315;
+            else
+                mouth =360;
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            if(x>= getHeight()-100)
+                x= -100;
+            else
+                x+=5; 
+            sa = 23;
+             if(x% 2 == 0)
+                mouth = 315;
+            else
+                mouth =360;
+        }
+        repaint();
+        
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+       
+    }
+}
