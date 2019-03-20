@@ -1,0 +1,82 @@
+
+package guide;
+import javax.swing.*;
+import java.awt.*;
+public class GUIDemo3 extends Panel {
+
+    public GUIDemo3(){
+        this.setBackground(Color.red);
+    }
+    public static void main(String[] args) {
+        //Frame
+        JFrame frame = new JFrame ("SPEARMAN");
+        //Class Object
+        frame.setSize(500, 500);
+        //setting the visibility of the frame
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setResizable(true);
+        GUIDemo3 gui = new GUIDemo3();
+        frame.add(gui);
+        
+        //g.setColor(new Color(66,134,244));
+    }
+    @Override
+    public void paint (Graphics g){
+       
+        g.setColor(Color.black);
+        g.fillRect(330, 230, 150, 230);
+        
+        
+        g.setColor(Color.black);
+        g.drawArc(348, 335, 40, 250, 150, 550);
+        g.fillArc(348, 335, 40, 250, 150, 550);
+       
+        g.setColor(Color.black);
+        g.drawArc(424, 335, 40, 250, 150, 550);
+        g.fillArc(424, 335, 40, 250, 150, 550);
+        
+        g.setColor(Color.gray);
+        g.fillRect(350, 230, 30, 100);
+        
+        g.setColor(Color.gray);
+        g.fillRect(430, 230, 30, 100);
+        
+        g.setColor(Color.blue);
+        g.fillRect(380, 200, 50, 40);
+        
+        g.setColor(Color.black);
+        g.fillRect(345, 130, 120, 80);
+        
+        g.setColor(Color.gray);
+        g.fillRect(345, 110, 120, 20);
+        //asda
+        g.setColor(Color.gray);
+        g.fillRect(340, 110, 20, 100);
+        //123
+        g.setColor(Color.gray);
+        g.fillRect(450, 110, 20, 100);
+        
+        g.setColor(Color.gray);
+        g.fillRect(330, 300, 150, 80);
+        
+        g.setColor(Color.black);
+        g.fillRect(340, 310, 130, 60);
+        //45
+        g.setColor(Color.black);
+        g.fillRect(460, 245, 90, 40);
+ 
+        g.setColor(Color.green);
+        g.drawArc(265, 50, 15, 440, 550, 650);
+        g.fillArc(265, 50, 15, 440, 550, 650);
+        
+        g.setColor(Color.black);
+        g.fillRect(260, 245, 90, 40);
+        
+        g.setColor(Color.black);
+        g.drawArc(266, 10, 10, 120, 250, 250);
+        g.fillArc(266, 10, 10, 120, 250, 250);
+ 
+    }
+    
+}
