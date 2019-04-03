@@ -1,0 +1,41 @@
+package smiley;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Smiley extends Panel {
+
+    public Smiley() {
+        this.setBackground(Color.white);
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("smiley");
+        Smiley face = new Smiley();
+
+        frame.setVisible(true);
+        frame.setSize(500, 500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(face);
+    }
+
+    public void paint(Graphics g) {
+        g.setColor(Color.yellow);
+        g.fillOval(100, 100, 300, 300);
+
+        g.setColor(Color.black);
+        g.fillOval(150, 150, 80, 80);
+        g.fillOval(270, 150, 80, 80);
+
+        g.setColor(Color.white);
+        g.fillRoundRect(150, 270, 200, 80, 250, 50);
+        g.fillOval(200, 160, 20, 20);
+        g.fillOval(320, 160, 20, 20);
+
+        g.setColor(Color.black);
+        g.drawLine(200, 345, 200, 275);
+        g.drawLine(250, 350, 250, 270);
+        g.drawLine(300, 345, 300, 275);
+        g.drawLine(350, 310, 150, 310);
+    }
+}
